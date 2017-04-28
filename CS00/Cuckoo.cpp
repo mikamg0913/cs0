@@ -12,7 +12,7 @@ Levy::Levy(double _beta) {
 	sigma = pow(tgamma(beta + 1) * sin(std::_Pi * beta / 2) /
 		tgamma((beta + 1) / 2) * beta * pow(2, (beta - 1) / 2), 1 / beta);
 
-	n_d_u = std::normal_distribution<>(0, sigma*sigma);
+	n_d_u = std::normal_distribution<>(0, sigma);
 	n_d_v = std::normal_distribution<>(0, 1.0);
 }
 
@@ -106,7 +106,8 @@ void Cuckoo::worst_update() {
 		dammy.worst_update(xx[j], _F, wnest[j], x_dm[sh_num[j]], x_dm[sh_num2[j]], func);
 		//std::cout << "Œ³:" << xx[j].f << " dm:" << dammy.f << std::endl;
 		if (xx[j].f() > dammy.f()) {
-			xx[j] = dammy;
+			//xx[j] = dammy;
+			xx[j] = std::move(dammy);
 		}
 	}
 }
