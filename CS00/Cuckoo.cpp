@@ -24,6 +24,7 @@ Cuckoo::Cuckoo(int N, int SN, std::mt19937& rng, const Func& funcc) : rng(rng), 
 	for (auto&& it : xx) {
 		it.Initialize(funcc, rng, N);
 	}
+	
 
 	//wnest‚Ì‰Šú‰»
 	wnest.resize(SN);
